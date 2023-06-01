@@ -1,0 +1,11 @@
+/Users/nestcoin/Documents/projects/food-ordering-system/order-service/common/common-domain/src/main/java/com/hayba/domain/valueobject/RestaurantId.java
+/Users/nestcoin/Documents/projects/food-ordering-system/order-service/common/common-domain/src/main/java/com/hayba/domain/valueobject/Money.java
+/Users/nestcoin/Documents/projects/food-ordering-system/order-service/common/common-domain/src/main/java/com/hayba/domain/exception/DomainException.java
+/Users/nestcoin/Documents/projects/food-ordering-system/order-service/common/common-domain/src/main/java/com/hayba/domain/event/DomainEvent.java
+/Users/nestcoin/Documents/projects/food-ordering-system/order-service/common/common-domain/src/main/java/com/hayba/domain/valueobject/OrderStatus.java
+/Users/nestcoin/Documents/projects/food-ordering-system/order-service/common/common-domain/src/main/java/com/hayba/domain/entity/AggregateRoot.java
+/Users/nestcoin/Documents/projects/food-ordering-system/order-service/common/common-domain/src/main/java/com/hayba/domain/valueobject/OrderId.java
+/Users/nestcoin/Documents/projects/food-ordering-system/order-service/common/common-domain/src/main/java/com/hayba/domain/valueobject/BaseId.java
+/Users/nestcoin/Documents/projects/food-ordering-system/order-service/common/common-domain/src/main/java/com/hayba/domain/entity/BaseEntity.java
+/Users/nestcoin/Documents/projects/food-ordering-system/order-service/common/common-domain/src/main/java/com/hayba/domain/valueobject/CustomerId.java
+/Users/nestcoin/Documents/projects/food-ordering-system/order-service/common/common-domain/src/main/java/com/hayba/domain/valueobject/ProductId.java
