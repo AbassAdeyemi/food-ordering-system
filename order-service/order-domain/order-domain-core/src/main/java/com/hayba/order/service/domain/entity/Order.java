@@ -9,12 +9,11 @@ import com.hayba.order.service.domain.valueobject.TrackingId;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 public class Order extends AggregateRoot<OrderId> {
     private final CustomerId customerId;
     private final RestaurantId restaurantID;
-    private final StreetAddress streetAddress;
+    private final StreetAddress deliveryAddress;
     private final Money price;
     private final List<OrderItem> items;
 
@@ -31,8 +30,8 @@ public class Order extends AggregateRoot<OrderId> {
         return restaurantID;
     }
 
-    public StreetAddress getStreetAddress() {
-        return streetAddress;
+    public StreetAddress getDeliveryAddress() {
+        return deliveryAddress;
     }
 
     public Money getPrice() {
@@ -148,7 +147,7 @@ public class Order extends AggregateRoot<OrderId> {
         super.setId(builder.orderId);
         customerId = builder.customerId;
         restaurantID = builder.restaurantID;
-        streetAddress = builder.streetAddress;
+        deliveryAddress = builder.deliveryAddress;
         price = builder.price;
         items = builder.items;
         trackingId = builder.trackingId;
@@ -161,7 +160,7 @@ public class Order extends AggregateRoot<OrderId> {
         private OrderId orderId;
         private CustomerId customerId;
         private RestaurantId restaurantID;
-        private StreetAddress streetAddress;
+        private StreetAddress deliveryAddress;
         private Money price;
         private List<OrderItem> items;
         private TrackingId trackingId;
@@ -190,8 +189,8 @@ public class Order extends AggregateRoot<OrderId> {
             return this;
         }
 
-        public Builder streetAddress(StreetAddress val) {
-            streetAddress = val;
+        public Builder deliveryAddress(StreetAddress val) {
+            deliveryAddress = val;
             return this;
         }
 
