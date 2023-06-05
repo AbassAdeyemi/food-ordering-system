@@ -57,6 +57,7 @@ public class Order extends AggregateRoot<OrderId> {
     public void initializeOrder() {
        setId(new OrderId(UUID.randomUUID()));
        trackingId = new TrackingId(UUID.randomUUID());
+       orderStatus = OrderStatus.PENDING;
        initializeOrderItems();
     }
 
@@ -125,14 +126,14 @@ public class Order extends AggregateRoot<OrderId> {
 
         if (!price.equals(orderItemsTotal)) {
             throw new OrderDomainException("Total price: %s is not equals to order items total: %s"
-                    .formatted(price.getAmount(), orderItemsTotal));
+                    .formatted(price.getAmount(), orderItemsTotal.getAmount()));
         }
     }
 
     private void validateItemPrice(OrderItem orderItem) {
         if(!orderItem.isPriceValid()) {
             throw new OrderDomainException("Order item price: %s is not valid for product: %s"
-                    .formatted(orderItem.getPrice().getAmount(), orderItem.getProduct().getPrice().getAmount()));
+                    .formatted(orderItem.getPrice().getAmount(), orderItem.getProduct().getId().getValue()));
         }
     }
 

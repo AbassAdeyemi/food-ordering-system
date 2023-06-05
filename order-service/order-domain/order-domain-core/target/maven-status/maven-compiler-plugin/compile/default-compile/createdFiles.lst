@@ -3,6 +3,7 @@ com/hayba/order/service/domain/valueobject/OrderItemId.class
 com/hayba/order/service/domain/entity/Order.class
 com/hayba/order/service/domain/entity/Restaurant.class
 com/hayba/order/service/domain/event/OrderCancelledEvent.class
+com/hayba/order/service/domain/exception/OrderNotFoundException.class
 com/hayba/order/service/domain/entity/Customer.class
 com/hayba/order/service/domain/event/OrderCreatedEvent.class
 com/hayba/order/service/domain/valueobject/StreetAddress.class

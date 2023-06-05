@@ -7,6 +7,7 @@ import com.hayba.domain.valueobject.RestaurantId;
 import com.hayba.order.service.domain.dto.create.CreateOrderCommand;
 import com.hayba.order.service.domain.dto.create.CreateOrderResponse;
 import com.hayba.order.service.domain.dto.create.OrderAddress;
+import com.hayba.order.service.domain.dto.track.TrackOrderResponse;
 import com.hayba.order.service.domain.entity.Order;
 import com.hayba.order.service.domain.entity.OrderItem;
 import com.hayba.order.service.domain.entity.Product;
@@ -16,7 +17,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Component
 public class OrderDataMapper {
@@ -33,16 +33,25 @@ public class OrderDataMapper {
         return Order.Builder.builder()
                 .customerId(new CustomerId(createOrderCommand.getCustomerId()))
                 .restaurantID(new RestaurantId(createOrderCommand.getRestaurantId()))
-                .deliveryAddress(orderAddressToStreetAddress(createOrderCommand.getOrderAddress()))
+                .deliveryAddress(orderAddressToStreetAddress(createOrderCommand.getAddress()))
                 .price(new Money(createOrderCommand.getPrice()))
                 .items(orderItemsToOrderItemsEntities(createOrderCommand.getItems()))
                 .build();
     }
 
-    public CreateOrderResponse orderToCreateOrderResponse(Order order) {
+    public CreateOrderResponse orderToCreateOrderResponse(Order order, String message) {
         return CreateOrderResponse.builder()
                 .orderTrackingId(order.getTrackingId().getValue())
                 .orderStatus(order.getOrderStatus())
+                .message(message)
+                .build();
+    }
+
+    public TrackOrderResponse orderToTrackOrderResponse(Order order) {
+        return TrackOrderResponse.builder()
+                .orderTrackingId(order.getTrackingId().getValue())
+                .orderStatus(order.getOrderStatus())
+                .failureMessages(order.getFailureMessages())
                 .build();
     }
 

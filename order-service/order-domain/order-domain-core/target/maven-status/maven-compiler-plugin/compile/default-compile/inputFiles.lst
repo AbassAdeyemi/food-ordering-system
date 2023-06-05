@@ -1,5 +1,6 @@
 /Users/nestcoin/Documents/projects/food-ordering-system/order-service/order-domain/order-domain-core/src/main/java/com/hayba/order/service/domain/entity/Order.java
 /Users/nestcoin/Documents/projects/food-ordering-system/order-service/order-domain/order-domain-core/src/main/java/com/hayba/order/service/domain/entity/Customer.java
+/Users/nestcoin/Documents/projects/food-ordering-system/order-service/order-domain/order-domain-core/src/main/java/com/hayba/order/service/domain/exception/OrderNotFoundException.java
 /Users/nestcoin/Documents/projects/food-ordering-system/order-service/order-domain/order-domain-core/src/main/java/com/hayba/order/service/domain/valueobject/StreetAddress.java
 /Users/nestcoin/Documents/projects/food-ordering-system/order-service/order-domain/order-domain-core/src/main/java/com/hayba/order/service/domain/valueobject/OrderItemId.java
 /Users/nestcoin/Documents/projects/food-ordering-system/order-service/order-domain/order-domain-core/src/main/java/com/hayba/order/service/domain/event/OrderPaidEvent.java
