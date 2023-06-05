@@ -1,26 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.hayba.order.service.OrderApplicationServiceTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 3, Errors: 1, Skipped: 0, Time elapsed: 8.027 s <<< FAILURE! - in com.hayba.order.service.OrderApplicationServiceTest
-testCreateOrderWithWrongTotalPrice  Time elapsed: 0.17 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: Unexpected exception type thrown ==> expected: <com.hayba.order.service.domain.exception.OrderDomainException> but was: <java.lang.IllegalStateException>
-	at com.hayba.order.service.OrderApplicationServiceTest.testCreateOrderWithWrongTotalPrice(OrderApplicationServiceTest.java:161)
-Caused by: java.lang.IllegalStateException: Duplicate key com.hayba.order.service.domain.entity.Product@4d7352c6 (attempted merging values com.hayba.order.service.domain.entity.Product@4d7352c6 and com.hayba.order.service.domain.entity.Product@4d7352c6)
-	at com.hayba.order.service.OrderApplicationServiceTest.lambda$testCreateOrderWithWrongTotalPrice$0(OrderApplicationServiceTest.java:162)
-	at com.hayba.order.service.OrderApplicationServiceTest.testCreateOrderWithWrongTotalPrice(OrderApplicationServiceTest.java:161)
-
-testCreateOrder  Time elapsed: 0.01 s  <<< ERROR!
-java.lang.IllegalStateException: Duplicate key com.hayba.order.service.domain.entity.Product@4d7352c6 (attempted merging values com.hayba.order.service.domain.entity.Product@4d7352c6 and com.hayba.order.service.domain.entity.Product@4d7352c6)
-	at com.hayba.order.service.OrderApplicationServiceTest.testCreateOrder(OrderApplicationServiceTest.java:153)
-
-testCreateOrderWithWrongProductPrice  Time elapsed: 0.008 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: Unexpected exception type thrown ==> expected: <com.hayba.order.service.domain.exception.OrderDomainException> but was: <java.lang.IllegalStateException>
-	at com.hayba.order.service.OrderApplicationServiceTest.testCreateOrderWithWrongProductPrice(OrderApplicationServiceTest.java:168)
-Caused by: java.lang.IllegalStateException: Duplicate key com.hayba.order.service.domain.entity.Product@4d7352c6 (attempted merging values com.hayba.order.service.domain.entity.Product@4d7352c6 and com.hayba.order.service.domain.entity.Product@4d7352c6)
-	at com.hayba.order.service.OrderApplicationServiceTest.lambda$testCreateOrderWithWrongProductPrice$1(OrderApplicationServiceTest.java:169)
-	at com.hayba.order.service.OrderApplicationServiceTest.testCreateOrderWithWrongProductPrice(OrderApplicationServiceTest.java:168)
-
-testCreateOrderWithPassiveRestaurant  Time elapsed: 0.014 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: expected: <Restaurant with id d215b5f8-0249-4dc5-89a3-51fd148cfb45 is currently not active!> but was: <Restaurant with id: d215b5f8-0249-4dc5-89a3-51fd148cfb45 is not currently active>
-	at com.hayba.order.service.OrderApplicationServiceTest.testCreateOrderWithPassiveRestaurant(OrderApplicationServiceTest.java:185)
-
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.103 s - in com.hayba.order.service.OrderApplicationServiceTest

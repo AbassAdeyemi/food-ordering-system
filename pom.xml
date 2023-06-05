@@ -5,7 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
     <modules>
         <module>order-service</module>
-        <module>order-service/common</module>
+        <module>common</module>
+        <module>infrastructure</module>
     </modules>
 
     <parent>
