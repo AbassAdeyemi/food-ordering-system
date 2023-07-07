@@ -1,0 +1,3 @@
+com/hayba/kafka/config/data/KafkaConfigData.class
+com/hayba/kafka/config/data/KafkaProducerConfigData.class
+com/hayba/kafka/config/data/KafkaConsumerConfigData.class
