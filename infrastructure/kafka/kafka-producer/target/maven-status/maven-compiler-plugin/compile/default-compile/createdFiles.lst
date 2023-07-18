@@ -1,0 +1,4 @@
+com/hayba/kafka/producer/service/KafkaProducer.class
+com/hayba/kafka/producer/service/KafkaProducerConfig.class
+com/hayba/kafka/producer/service/impl/KafkaProducerImpl.class
+com/hayba/kafka/producer/exception/KafkaProducerException.class
