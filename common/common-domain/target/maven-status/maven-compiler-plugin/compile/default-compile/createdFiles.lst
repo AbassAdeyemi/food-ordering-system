@@ -7,7 +7,9 @@ com/hayba/domain/valueobject/OrderId.class
 com/hayba/domain/valueobject/PaymentStatus.class
 com/hayba/domain/valueobject/ProductId.class
 com/hayba/domain/entity/AggregateRoot.class
+com/hayba/domain/DomainConstants.class
 com/hayba/domain/valueobject/OrderStatus.class
+com/hayba/domain/valueobject/PaymentOrderStatus.class
 com/hayba/domain/valueobject/OrderApprovalStatus.class
 com/hayba/domain/valueobject/RestaurantId.class
 com/hayba/domain/entity/BaseEntity.class

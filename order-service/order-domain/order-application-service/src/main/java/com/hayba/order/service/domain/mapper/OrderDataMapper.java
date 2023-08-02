@@ -22,7 +22,7 @@ import java.util.UUID;
 public class OrderDataMapper {
 
     public Restaurant createOrderCommandToRestaurant(CreateOrderCommand createOrderCommand) {
-        return Restaurant.Builder.builder()
+        return Restaurant.builder()
                 .restaurantId(new RestaurantId(createOrderCommand.getRestaurantId()))
                 .products(createOrderCommand.getItems().stream().map(orderItem ->
                                 new Product(new ProductId(orderItem.getProductId())))

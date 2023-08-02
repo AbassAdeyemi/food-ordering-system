@@ -29,7 +29,7 @@ public class GlobalExceptionHandler {
     }
 
     @ResponseBody
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler(ValidationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorDTO handleException(ValidationException exception) {
         ErrorDTO.ErrorDTOBuilder errorDTOBuilder =
