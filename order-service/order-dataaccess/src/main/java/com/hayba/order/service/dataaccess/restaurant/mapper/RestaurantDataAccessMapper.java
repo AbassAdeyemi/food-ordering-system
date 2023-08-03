@@ -1,10 +1,10 @@
 package com.hayba.order.service.dataaccess.restaurant.mapper;
 
+import com.hayba.dataaccess.restaurant.entity.RestaurantEntity;
+import com.hayba.dataaccess.restaurant.exception.RestaurantDataAccessException;
 import com.hayba.domain.valueobject.Money;
 import com.hayba.domain.valueobject.ProductId;
 import com.hayba.domain.valueobject.RestaurantId;
-import com.hayba.order.service.dataaccess.restaurant.entity.RestaurantEntity;
-import com.hayba.order.service.dataaccess.restaurant.exception.RestaurantDataAccessException;
 import com.hayba.order.service.domain.entity.Product;
 import com.hayba.order.service.domain.entity.Restaurant;
 import org.springframework.stereotype.Component;

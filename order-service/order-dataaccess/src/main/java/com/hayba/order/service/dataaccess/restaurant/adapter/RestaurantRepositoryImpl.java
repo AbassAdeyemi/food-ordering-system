@@ -1,8 +1,8 @@
 package com.hayba.order.service.dataaccess.restaurant.adapter;
 
-import com.hayba.order.service.dataaccess.restaurant.entity.RestaurantEntity;
+import com.hayba.dataaccess.restaurant.entity.RestaurantEntity;
+import com.hayba.dataaccess.restaurant.repository.RestaurantJpaRepository;
 import com.hayba.order.service.dataaccess.restaurant.mapper.RestaurantDataAccessMapper;
-import com.hayba.order.service.dataaccess.restaurant.repository.RestaurantJpaRepository;
 import com.hayba.order.service.domain.entity.Restaurant;
 import com.hayba.order.service.domain.ports.output.repository.RestaurantRepository;
 import org.springframework.stereotype.Component;
