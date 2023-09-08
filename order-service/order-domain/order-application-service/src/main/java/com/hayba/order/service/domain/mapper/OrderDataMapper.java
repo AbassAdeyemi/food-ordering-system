@@ -1,9 +1,6 @@
 package com.hayba.order.service.domain.mapper;
 
-import com.hayba.domain.valueobject.CustomerId;
-import com.hayba.domain.valueobject.Money;
-import com.hayba.domain.valueobject.ProductId;
-import com.hayba.domain.valueobject.RestaurantId;
+import com.hayba.domain.valueobject.*;
 import com.hayba.order.service.domain.dto.create.CreateOrderCommand;
 import com.hayba.order.service.domain.dto.create.CreateOrderResponse;
 import com.hayba.order.service.domain.dto.create.OrderAddress;
@@ -12,11 +9,18 @@ import com.hayba.order.service.domain.entity.Order;
 import com.hayba.order.service.domain.entity.OrderItem;
 import com.hayba.order.service.domain.entity.Product;
 import com.hayba.order.service.domain.entity.Restaurant;
+import com.hayba.order.service.domain.event.OrderCancelledEvent;
+import com.hayba.order.service.domain.event.OrderCreatedEvent;
+import com.hayba.order.service.domain.event.OrderPaidEvent;
+import com.hayba.order.service.domain.outbox.model.approval.OrderApprovalEventPayload;
+import com.hayba.order.service.domain.outbox.model.approval.OrderApprovalEventProduct;
+import com.hayba.order.service.domain.outbox.model.payment.OrderPaymentEventPayload;
 import com.hayba.order.service.domain.valueobject.StreetAddress;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Component
 public class OrderDataMapper {
@@ -52,6 +56,42 @@ public class OrderDataMapper {
                 .orderTrackingId(order.getTrackingId().getValue())
                 .orderStatus(order.getOrderStatus())
                 .failureMessages(order.getFailureMessages())
+                .build();
+    }
+
+    public OrderPaymentEventPayload orderCreatedEventToOrderPaymentEventPayload(OrderCreatedEvent orderCreatedEvent) {
+        return OrderPaymentEventPayload.builder()
+                .customerId(orderCreatedEvent.getOrder().getCustomerId().getValue().toString())
+                .orderId(orderCreatedEvent.getOrder().getId().getValue().toString())
+                .price(orderCreatedEvent.getOrder().getPrice().getAmount())
+                .createdAt(orderCreatedEvent.getCreatedAt())
+                .paymentOrderStatus(PaymentOrderStatus.PENDING.name())
+                .build();
+    }
+
+    public OrderPaymentEventPayload orderCancelledEventToOrderPaymentEventPayload(OrderCancelledEvent
+                                                                                          orderCancelledEvent) {
+        return OrderPaymentEventPayload.builder()
+                .customerId(orderCancelledEvent.getOrder().getCustomerId().getValue().toString())
+                .orderId(orderCancelledEvent.getOrder().getId().getValue().toString())
+                .price(orderCancelledEvent.getOrder().getPrice().getAmount())
+                .createdAt(orderCancelledEvent.getCreatedAt())
+                .paymentOrderStatus(PaymentOrderStatus.CANCELLED.name())
+                .build();
+    }
+
+    public OrderApprovalEventPayload orderPaidEventToOrderApprovalEventPayload(OrderPaidEvent orderPaidEvent) {
+        return OrderApprovalEventPayload.builder()
+                .orderId(orderPaidEvent.getOrder().getId().getValue().toString())
+                .restaurantId(orderPaidEvent.getOrder().getRestaurantId().getValue().toString())
+                .restaurantOrderStatus(RestaurantOrderStatus.PAID.name())
+                .products(orderPaidEvent.getOrder().getItems().stream().map(orderItem ->
+                        OrderApprovalEventProduct.builder()
+                                .id(orderItem.getProduct().getId().getValue().toString())
+                                .quantity(orderItem.getQuantity())
+                                .build()).collect(Collectors.toList()))
+                .price(orderPaidEvent.getOrder().getPrice().getAmount())
+                .createdAt(orderPaidEvent.getCreatedAt())
                 .build();
     }
 

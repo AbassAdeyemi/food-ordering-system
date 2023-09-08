@@ -27,7 +27,7 @@ public class OrderDataAccessMapper {
                 .builder()
                 .id(order.getId().getValue())
                 .customerId(order.getCustomerId().getValue())
-                .restaurantId(order.getRestaurantID().getValue())
+                .restaurantId(order.getRestaurantId().getValue())
                 .trackingId(order.getTrackingId().getValue())
                 .address(deliveryAddressToAddressEntity(order.getDeliveryAddress()))
                 .price(order.getPrice().getAmount())

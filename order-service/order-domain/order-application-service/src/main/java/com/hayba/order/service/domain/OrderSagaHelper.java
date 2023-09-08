@@ -1,9 +1,11 @@
 package com.hayba.order.service.domain;
 
 import com.hayba.domain.valueobject.OrderId;
+import com.hayba.domain.valueobject.OrderStatus;
 import com.hayba.order.service.domain.entity.Order;
 import com.hayba.order.service.domain.exception.OrderNotFoundException;
 import com.hayba.order.service.domain.ports.output.repository.OrderRepository;
+import com.hayba.saga.SagaStatus;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -31,5 +33,20 @@ public class OrderSagaHelper {
 
     void saveOrder(Order order) {
         orderRepository.save(order);
+    }
+
+    SagaStatus orderStatusToSagaStatus(OrderStatus orderStatus) {
+        switch (orderStatus) {
+            case PAID:
+                return SagaStatus.PROCESSING;
+            case APPROVED:
+                return SagaStatus.SUCCEEDED;
+            case CANCELLING:
+                return SagaStatus.COMPENSATING;
+            case CANCELLED:
+                return SagaStatus.COMPENSATED;
+            default:
+                return SagaStatus.STARTED;
+        }
     }
 }

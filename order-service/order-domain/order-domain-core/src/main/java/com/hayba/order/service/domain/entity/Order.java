@@ -12,7 +12,7 @@ import java.util.UUID;
 
 public class Order extends AggregateRoot<OrderId> {
     private final CustomerId customerId;
-    private final RestaurantId restaurantID;
+    private final RestaurantId restaurantId;
     private final StreetAddress deliveryAddress;
     private final Money price;
     private final List<OrderItem> items;
@@ -28,8 +28,8 @@ public class Order extends AggregateRoot<OrderId> {
         return customerId;
     }
 
-    public RestaurantId getRestaurantID() {
-        return restaurantID;
+    public RestaurantId getRestaurantId() {
+        return restaurantId;
     }
 
     public StreetAddress getDeliveryAddress() {
@@ -149,7 +149,7 @@ public class Order extends AggregateRoot<OrderId> {
     private Order(Builder builder) {
         super.setId(builder.orderId);
         customerId = builder.customerId;
-        restaurantID = builder.restaurantID;
+        restaurantId = builder.restaurantID;
         deliveryAddress = builder.deliveryAddress;
         price = builder.price;
         items = builder.items;
