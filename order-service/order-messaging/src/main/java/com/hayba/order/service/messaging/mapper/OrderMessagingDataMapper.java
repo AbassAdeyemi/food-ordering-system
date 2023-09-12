@@ -3,6 +3,7 @@ package com.hayba.order.service.messaging.mapper;
 import com.hayba.domain.valueobject.OrderApprovalStatus;
 import com.hayba.domain.valueobject.PaymentStatus;
 import com.hayba.kafka.order.avro.model.*;
+import com.hayba.order.service.domain.dto.message.CustomerModel;
 import com.hayba.order.service.domain.dto.message.PaymentResponse;
 import com.hayba.order.service.domain.dto.message.RestaurantApprovalResponse;
 import com.hayba.order.service.domain.entity.Order;
@@ -120,6 +121,15 @@ public class OrderMessagingDataMapper {
                                 .build()).collect(Collectors.toList()))
                 .setPrice(orderApprovalEventPayload.getPrice())
                 .setCreatedAt(orderApprovalEventPayload.getCreatedAt().toInstant())
+                .build();
+    }
+
+    public CustomerModel customerAvroModeltoCustomerModel(CustomerAvroModel customerAvroModel) {
+        return CustomerModel.builder()
+                .id(customerAvroModel.getId())
+                .username(customerAvroModel.getUsername())
+                .firstName(customerAvroModel.getFirstName())
+                .lastName(customerAvroModel.getLastName())
                 .build();
     }
 

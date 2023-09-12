@@ -4,11 +4,9 @@ import com.hayba.domain.valueobject.*;
 import com.hayba.order.service.domain.dto.create.CreateOrderCommand;
 import com.hayba.order.service.domain.dto.create.CreateOrderResponse;
 import com.hayba.order.service.domain.dto.create.OrderAddress;
+import com.hayba.order.service.domain.dto.message.CustomerModel;
 import com.hayba.order.service.domain.dto.track.TrackOrderResponse;
-import com.hayba.order.service.domain.entity.Order;
-import com.hayba.order.service.domain.entity.OrderItem;
-import com.hayba.order.service.domain.entity.Product;
-import com.hayba.order.service.domain.entity.Restaurant;
+import com.hayba.order.service.domain.entity.*;
 import com.hayba.order.service.domain.event.OrderCancelledEvent;
 import com.hayba.order.service.domain.event.OrderCreatedEvent;
 import com.hayba.order.service.domain.event.OrderPaidEvent;
@@ -93,6 +91,13 @@ public class OrderDataMapper {
                 .price(orderPaidEvent.getOrder().getPrice().getAmount())
                 .createdAt(orderPaidEvent.getCreatedAt())
                 .build();
+    }
+
+    public Customer customerModelToCustomer(CustomerModel customerModel) {
+        return new Customer(new CustomerId(UUID.fromString(customerModel.getId())),
+                customerModel.getUsername(),
+                customerModel.getFirstName(),
+                customerModel.getLastName());
     }
 
     private List<OrderItem> orderItemsToOrderItemsEntities(List<com.hayba.order.service.domain.dto.create.OrderItem> orderItems) {

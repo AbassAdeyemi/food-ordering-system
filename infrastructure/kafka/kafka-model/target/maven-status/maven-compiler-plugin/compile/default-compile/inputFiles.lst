@@ -1,9 +1,0 @@
-/Users/nestcoin/Documents/projects/food-ordering-system/infrastructure/kafka/kafka-model/src/main/java/com/hayba/kafka/order/avro/model/Product.java
-/Users/nestcoin/Documents/projects/food-ordering-system/infrastructure/kafka/kafka-model/src/main/java/com/hayba/kafka/order/avro/model/PaymentResponseAvroModel.java
-/Users/nestcoin/Documents/projects/food-ordering-system/infrastructure/kafka/kafka-model/src/main/java/com/hayba/kafka/order/avro/model/RestaurantOrderStatus.java
-/Users/nestcoin/Documents/projects/food-ordering-system/infrastructure/kafka/kafka-model/src/main/java/com/hayba/kafka/order/avro/model/OrderApprovalStatus.java
-/Users/nestcoin/Documents/projects/food-ordering-system/infrastructure/kafka/kafka-model/src/main/java/com/hayba/kafka/order/avro/model/PaymentRequestAvroModel.java
-/Users/nestcoin/Documents/projects/food-ordering-system/infrastructure/kafka/kafka-model/src/main/java/com/hayba/kafka/order/avro/model/RestaurantApprovalRequestAvroModel.java
-/Users/nestcoin/Documents/projects/food-ordering-system/infrastructure/kafka/kafka-model/src/main/java/com/hayba/kafka/order/avro/model/RestaurantApprovalResponseAvroModel.java
-/Users/nestcoin/Documents/projects/food-ordering-system/infrastructure/kafka/kafka-model/src/main/java/com/hayba/kafka/order/avro/model/PaymentOrderStatus.java
-/Users/nestcoin/Documents/projects/food-ordering-system/infrastructure/kafka/kafka-model/src/main/java/com/hayba/kafka/order/avro/model/PaymentStatus.java
