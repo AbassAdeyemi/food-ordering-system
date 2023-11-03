@@ -2,13 +2,11 @@ package com.hayba.restaurant.service.domain.dto;
 
 import com.hayba.domain.valueobject.RestaurantOrderStatus;
 import com.hayba.restaurant.service.domain.entity.Product;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
-@Getter
 @Builder
-@AllArgsConstructor
+@ToString
+@Getter
 public class RestaurantApprovalRequest {
     private String id;
     private String sagaId;

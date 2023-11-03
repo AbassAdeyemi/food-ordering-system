@@ -10,12 +10,14 @@ import com.hayba.restaurant.service.domain.outbox.model.OrderOutboxMessage;
 import com.hayba.restaurant.service.domain.ports.output.message.publisher.RestaurantApprovalResponseMessagePublisher;
 import com.hayba.restaurant.service.messaging.mapper.RestaurantMessagingDataMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 import java.util.function.BiConsumer;
 
 @Slf4j
 @Component
+@ConditionalOnProperty(prefix = "restaurant-service", name = "messaging-platform", havingValue = "kafka")
 public class RestaurantApprovalEventKafkaPublisher implements RestaurantApprovalResponseMessagePublisher {
 
     private final RestaurantMessagingDataMapper restaurantMessagingDataMapper;

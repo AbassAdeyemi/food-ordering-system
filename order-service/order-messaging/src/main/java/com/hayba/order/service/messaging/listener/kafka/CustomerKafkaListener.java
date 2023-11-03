@@ -5,6 +5,7 @@ import com.hayba.kafka.order.avro.model.CustomerAvroModel;
 import com.hayba.order.service.domain.ports.input.message.listener.customer.CustomerMessageListener;
 import com.hayba.order.service.messaging.mapper.OrderMessagingDataMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.handler.annotation.Header;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @Slf4j
 @Component
+@ConditionalOnProperty(prefix = "order-service", name = "messaging-platform", havingValue = "kafka")
 public class CustomerKafkaListener implements KafkaConsumer<CustomerAvroModel> {
 
     private final CustomerMessageListener customerMessageListener;
@@ -40,6 +42,6 @@ public class CustomerKafkaListener implements KafkaConsumer<CustomerAvroModel> {
 
         messages.forEach(customerAvroModel ->
                 customerMessageListener.customerCreated(orderMessagingDataMapper
-                        .customerAvroModeltoCustomerModel(customerAvroModel)));
+                        .customerAvroModelToCustomerModel(customerAvroModel)));
     }
 }

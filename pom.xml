@@ -10,6 +10,7 @@
         <module>customer-service</module>
         <module>payment-service</module>
         <module>restaurant-service</module>
+        <module>infrastructure</module>
     </modules>
 
     <parent>
@@ -96,7 +97,7 @@
             <dependency>
                 <groupId>com.hayba</groupId>
                 <artifactId>payment-dataaccess</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.hayba</groupId>
@@ -189,6 +190,26 @@
             <dependency>
                 <groupId>com.hayba</groupId>
                 <artifactId>kafka-config-data</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hayba</groupId>
+                <artifactId>rabbitmq-config-data</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hayba</groupId>
+                <artifactId>rabbitmq-producer</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hayba</groupId>
+                <artifactId>rabbitmq-consumer</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hayba</groupId>
+                <artifactId>rabbitmq-model</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>

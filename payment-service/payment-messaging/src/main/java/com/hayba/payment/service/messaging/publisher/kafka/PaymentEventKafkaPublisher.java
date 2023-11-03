@@ -10,12 +10,14 @@ import com.hayba.payment.service.domain.outbox.model.OrderOutboxMessage;
 import com.hayba.payment.service.domain.ports.output.message.publisher.PaymentResponseMessagePublisher;
 import com.hayba.payment.service.messaging.mapper.PaymentMessagingDataMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 import java.util.function.BiConsumer;
 
 @Slf4j
 @Component
+@ConditionalOnProperty(prefix = "payment-service", name = "messaging-platform", havingValue = "kafka")
 public class PaymentEventKafkaPublisher implements PaymentResponseMessagePublisher {
 
     private final PaymentMessagingDataMapper paymentMessagingDataMapper;

@@ -6,6 +6,7 @@ import com.hayba.kafka.order.avro.model.PaymentRequestAvroModel;
 import com.hayba.payment.service.domain.ports.input.message.listener.PaymentRequestMessageListener;
 import com.hayba.payment.service.messaging.mapper.PaymentMessagingDataMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.handler.annotation.Header;
@@ -16,6 +17,7 @@ import java.util.List;
 
 @Slf4j
 @Component
+@ConditionalOnProperty(prefix = "payment-service", name = "messaging-platform", havingValue = "kafka")
 public class PaymentRequestKafkaListener implements KafkaConsumer<PaymentRequestAvroModel> {
 
     private final PaymentRequestMessageListener paymentRequestMessageListener;

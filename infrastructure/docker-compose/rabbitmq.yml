@@ -1,0 +1,14 @@
+version: '3'
+services:
+  rabbitmq:
+    image: "rabbitmq:3.12-management"  # Use RabbitMQ image with the management plugin
+    ports:
+      - "5672:5672"  # RabbitMQ default AMQP port
+      - "15672:15672"  # RabbitMQ management plugin port (optional)
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "secret_cookie"  # Set a custom Erlang cookie for clustering (optional)
+    volumes:
+      - ./volumes/rabbitmq:/var/lib/rabbitmq  # Store RabbitMQ data on a volume for persistence (optional)
+
+volumes:
+  rabbitmq-data:

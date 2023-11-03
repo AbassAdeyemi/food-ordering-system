@@ -5,6 +5,7 @@ import com.hayba.kafka.order.avro.model.RestaurantApprovalRequestAvroModel;
 import com.hayba.restaurant.service.domain.ports.input.message.listener.RestaurantApprovalRequestMessageListener;
 import com.hayba.restaurant.service.messaging.mapper.RestaurantMessagingDataMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.handler.annotation.Header;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @Slf4j
 @Component
+@ConditionalOnProperty(prefix = "restaurant-service", name = "messaging-platform", havingValue = "kafka")
 public class RestaurantApprovalRequestKafkaListener implements KafkaConsumer<RestaurantApprovalRequestAvroModel> {
 
     private final RestaurantApprovalRequestMessageListener restaurantApprovalRequestMessageListener;

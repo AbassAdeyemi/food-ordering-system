@@ -28,6 +28,18 @@
             <groupId>com.hayba</groupId>
             <artifactId>kafka-model</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.hayba</groupId>
+            <artifactId>rabbitmq-model</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.hayba</groupId>
+            <artifactId>rabbitmq-consumer</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.hayba</groupId>
+            <artifactId>rabbitmq-producer</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

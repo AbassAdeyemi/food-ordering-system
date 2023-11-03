@@ -13,6 +13,10 @@ import com.hayba.order.service.domain.event.OrderPaidEvent;
 import com.hayba.order.service.domain.outbox.model.approval.OrderApprovalEventPayload;
 import com.hayba.order.service.domain.outbox.model.approval.OrderApprovalEventProduct;
 import com.hayba.order.service.domain.outbox.model.payment.OrderPaymentEventPayload;
+import com.hayba.rabbitmq.order.model.PaymentRequestModel;
+import com.hayba.rabbitmq.order.model.PaymentResponseModel;
+import com.hayba.rabbitmq.order.model.RestaurantApprovalRequestModel;
+import com.hayba.rabbitmq.order.model.RestaurantApprovalResponseModel;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -124,12 +128,81 @@ public class OrderMessagingDataMapper {
                 .build();
     }
 
-    public CustomerModel customerAvroModeltoCustomerModel(CustomerAvroModel customerAvroModel) {
+    public CustomerModel customerAvroModelToCustomerModel(CustomerAvroModel customerAvroModel) {
         return CustomerModel.builder()
                 .id(customerAvroModel.getId())
                 .username(customerAvroModel.getUsername())
                 .firstName(customerAvroModel.getFirstName())
                 .lastName(customerAvroModel.getLastName())
+                .build();
+    }
+
+    // rabbit-mq
+    public CustomerModel customerRabbitModelToCustomerModel(com.hayba.rabbitmq.order.model.CustomerModel customerModel) {
+        return CustomerModel.builder()
+                .id(customerModel.getId())
+                .username(customerModel.getUsername())
+                .firstName(customerModel.getFirstName())
+                .lastName(customerModel.getLastName())
+                .build();
+    }
+
+    public PaymentRequestModel orderPaymentEventToPaymentRequestModel(String sagaId, OrderPaymentEventPayload
+            orderPaymentEventPayload) {
+        return PaymentRequestModel.builder()
+                .id(UUID.randomUUID().toString())
+                .sagaId(sagaId)
+                .customerId(orderPaymentEventPayload.getCustomerId())
+                .orderId(orderPaymentEventPayload.getOrderId())
+                .price(orderPaymentEventPayload.getPrice())
+                .createdAt(orderPaymentEventPayload.getCreatedAt().toInstant())
+                .paymentOrderStatus(com.hayba.rabbitmq.order.model.PaymentOrderStatus.valueOf(orderPaymentEventPayload.getPaymentOrderStatus()))
+                .build();
+    }
+
+    public RestaurantApprovalRequestModel
+    orderApprovalEventToRestaurantApprovalRequestModel(String sagaId, OrderApprovalEventPayload
+            orderApprovalEventPayload) {
+        return RestaurantApprovalRequestModel.builder()
+                .id(UUID.randomUUID().toString())
+                .sagaId(sagaId)
+                .orderId(orderApprovalEventPayload.getOrderId())
+                .restaurantId(orderApprovalEventPayload.getRestaurantId())
+                .restaurantOrderStatus(com.hayba.rabbitmq.order.model.RestaurantOrderStatus
+                        .valueOf(orderApprovalEventPayload.getRestaurantOrderStatus()))
+                .products(orderApprovalEventPayload.getProducts().stream().map(orderApprovalEventProduct ->
+                         com.hayba.rabbitmq.order.model.Product.builder()
+                                .id(orderApprovalEventProduct.getId())
+                                .quantity(orderApprovalEventProduct.getQuantity())
+                                .build()).collect(Collectors.toList()))
+                .price(orderApprovalEventPayload.getPrice())
+                .createdAt(orderApprovalEventPayload.getCreatedAt().toInstant())
+                .build();
+    }
+
+    public PaymentResponse paymentResponseModelToPaymentResponse(PaymentResponseModel paymentResponseModel) {
+        return  PaymentResponse.builder()
+                .id(paymentResponseModel.getId())
+                .sagaId(paymentResponseModel.getSagaId())
+                .paymentId(paymentResponseModel.getPaymentId())
+                .customerId(paymentResponseModel.getCustomerId())
+                .orderId(paymentResponseModel.getOrderId())
+                .price(paymentResponseModel.getPrice())
+                .createdAt(paymentResponseModel.getCreatedAt())
+                .paymentStatus(PaymentStatus.valueOf(paymentResponseModel.getPaymentStatus().name()))
+                .failureMessages(paymentResponseModel.getFailureMessages())
+                .build();
+    }
+
+    public RestaurantApprovalResponse approvalResponseModelToApprovalResponse(RestaurantApprovalResponseModel approvalResponseModel) {
+        return RestaurantApprovalResponse.builder()
+                .id(approvalResponseModel.getId())
+                .sagaId(approvalResponseModel.getSagaId())
+                .restaurantId(approvalResponseModel.getRestaurantId())
+                .orderId(approvalResponseModel.getOrderId())
+                .createdAt(approvalResponseModel.getCreatedAt())
+                .orderApprovalStatus(OrderApprovalStatus.valueOf(approvalResponseModel.getOrderApprovalStatus().name()))
+                .failureMessages(approvalResponseModel.getFailureMessages())
                 .build();
     }
 

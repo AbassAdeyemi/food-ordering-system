@@ -2,6 +2,7 @@ package com.hayba.order.service.domain.outbox.scheduler.payment;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.hayba.domain.valueobject.OrderStatus;
 import com.hayba.order.service.domain.exception.OrderDomainException;
 import com.hayba.order.service.domain.outbox.model.payment.OrderPaymentEventPayload;

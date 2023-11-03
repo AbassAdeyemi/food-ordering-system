@@ -8,12 +8,14 @@ import com.hayba.kafka.order.avro.model.CustomerAvroModel;
 import com.hayba.kafka.producer.service.KafkaProducer;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.RecordMetadata;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Component;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
 @Slf4j
 @Component
+@ConditionalOnProperty(prefix = "customer-service", name = "messaging-platform", havingValue = "kafka")
 public class CustomerCreatedEventKafkaPublisher implements CustomerMessagePublisher {
 
     private final CustomerMessagingDataMapper customerMessagingDataMapper;
@@ -36,7 +38,7 @@ public class CustomerCreatedEventKafkaPublisher implements CustomerMessagePublis
                 customerCreatedEvent.getCustomer().getId().getValue());
         try {
             CustomerAvroModel customerAvroModel = customerMessagingDataMapper
-                    .paymentResponseAvroModelToPaymentResponse(customerCreatedEvent);
+                    .customerCreatedEventToCustomerAvroModel(customerCreatedEvent);
 
             kafkaProducer.send(customerServiceConfigData.getCustomerTopicName(), customerAvroModel.getId(),
                     customerAvroModel,

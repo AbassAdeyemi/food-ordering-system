@@ -8,6 +8,7 @@ import com.hayba.customer.service.domain.mapper.CustomerDataMapper;
 import com.hayba.customer.service.domain.ports.input.service.CustomerApplicationService;
 import com.hayba.customer.service.domain.ports.output.message.publisher.CustomerMessagePublisher;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
